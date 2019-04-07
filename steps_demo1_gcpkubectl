@@ -1,0 +1,15 @@
+1  gcloud container clusters get-credentials standard-cluster-1 --zone asia-south1-a --project container-stack-demo
+2  kubectl run demo --image=diwakardocker/k8s-pod-lb-demo:latest --port=5005
+3  kubectl get deployment demo
+4  kubectl get nodes
+5  kubectl expose deployment demo --target-port=5005 --type=NodePort
+6  kubectl get service demo
+#https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer
+
+7  cat > basic-ingress.yaml
+8  kubectl apply -f basic-ingress.yaml
+9  kubectl get ingress basic-ingress
+10  kubectl get deployment
+11  kubectl scale --replicas=10 deployment/demo
+12  kubectl get deployment
+13 kubectl get pods
